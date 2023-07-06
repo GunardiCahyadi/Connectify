@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Profile.hasMany(models.Post)
       Profile.belongsTo(models.User)
     }
+    get formatDate(){
+      return this.dateOfBirth.toISOString().substring(0,10)
+    }
   }
   Profile.init({
     name: DataTypes.STRING,

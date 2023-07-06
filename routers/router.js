@@ -1,4 +1,6 @@
 const express = require('express')
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 const Controller = require('../controllers/controller')
 const router = express.Router()
 
@@ -17,8 +19,13 @@ router.use(function(req, res, next){
 router.get('/register',Controller.register)
 router.post('/register', Controller. postRegister) //tambahan joni
 router.get('/homepage',Controller.homeUser)
-router.get('/post/add',Controller.postAddForm)
-router.post('/post/add',Controller.homeUser)
+router.get('/post/add', Controller.postAddForm)
+router.post('/post/add',Controller.addPost)
+router.get('/profile',Controller.profile)
+router.get('/profile/edit',Controller.profileEditForm)
+router.post('/profile/edit',Controller.profileEdit)
+router.get('/posts/:postId/delete',Controller.delete)
+router.get('/posts/:postId/likes',Controller.likes)
 // router.get('/stores/add',Controller.addForm)
 // router.post('/stores/add',Controller.addStore)
 // router.get('/stores/:storeId',Controller.storeDetail)
