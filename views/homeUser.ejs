@@ -6,32 +6,50 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>Profile</title>
   <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      padding-top: 50px;
+    }
     .card {
       background-color: #f8f8ff;
       border-color: #e6e6fa;
     }
     .card-title {
       color: #9370db;
+      font-size: 20px;
     }
     .card-text {
       color: #808080;
+      font-size: 16px;
+    }
+    .heart-icon {
+      color: #ff4081;
+      margin-right: 5px;
     }
   </style>
 </head>
 <body>
-  <%- include('navbar') %>
-  <div class="container mt-5">
-    <h1>HOMEPAGE</h1>
-    <% posts.forEach(el => { %>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title"><%= el.content %></h5>
-          <img src="<%= el.imageURL %>" width="100px" class="img-fluid" alt="Profile Photo">
-          <h5>posted by : <%= el.Profile.name %></h5>
-          <h5>❤️ <%= el.likes %></h5>
+  <!-- Navbar -->
+  <%-include('navbar') %>
+  <!-- Content -->
+  <div class="container">
+    <h1 class="text-center mb-5">HOMEPAGE</h1>
+    <div class="row">
+      <% posts.forEach(el => { %>
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title"><%= el.content %></h5>
+              <img src="<%= el.imageURL %>" class="img-fluid mb-3" alt="Profile Photo">
+              <h6 class="mb-2">Posted by: <%= el.Profile.name %></h6>
+              <p class="mb-0"><span class="heart-icon">❤️</span> <%= el.likes %> likes</p>
+            </div>
+          </div>
         </div>
-      </div>
-    <% }) %>
+      <% }) %>
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

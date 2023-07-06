@@ -57,7 +57,94 @@ class Controller{
             console.log(err)
             res.send(err)
         })
-        
+    }
+
+    static addPost(req , res){
+        console.log(req.body, "=======");
+        const {content,imageURL,ProfileId} = req.body
+        Post.create({content,imageURL,ProfileId})
+        .then(() => {
+            res.redirect('/profile')
+        })
+        .catch(err => {
+            console.log(err);
+            res.send(err)
+        })
+    }
+
+    static profile(req,res){
+        let id = 1
+        Profile.findOne({
+            include: {
+                model:Post, 
+                order:[['createdAt','DESC']]},
+            where:id,
+        })
+        .then(profile => {
+            res.render('profile', {profile})
+        })
+        .catch(err => {
+            console.log(err)
+            res.send(err)
+        })
+
+    }
+
+    static profileEditForm(req,res){
+        let id = 1
+        Profile.findOne({
+            where:id
+        })
+        .then(profile => {
+            res.render('editProfile', {profile})
+        })
+        .catch(err => {
+            console.log(err)
+            res.send(err)
+        })
+    }
+
+    static profileEdit(req,res){
+        let id = 1
+        const {name,bio,dateOfBirth} = req.body
+        Profile.update({name,bio,dateOfBirth},{
+            where: {id}
+        })
+        .then(() => {
+            res.redirect('/profile')
+        })
+        .catch(err => {
+            console.log(err)
+            res.send(err)
+        })
+    }
+
+    static delete(req,res){
+        const {postId} = req.params
+        Post.destroy({
+            where: {id : postId}
+        })
+        .then(() => {
+            res.redirect('/profile')
+        })
+        .catch(err => {
+            console.log(err)
+            res.send(err)
+        })
+    }
+    
+    static likes(req,res){
+        const {postId} = req.params
+        Post.increment({likes:1},{
+            where: {id : postId}
+        })
+        .then(() => {
+            res.redirect('/profile')
+        })
+        .catch(err => {
+            console.log(err)
+            res.send(err)
+        })
     }
 
 }
