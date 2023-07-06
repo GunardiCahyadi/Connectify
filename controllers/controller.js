@@ -1,33 +1,49 @@
 const { User, Profile , Post, Comment} = require('../models/index')
 const {Op} = require('sequelize')
+const bcrypt= require('bcryptjs')
 
 class Controller{
 
     static login (req,res){
-        res.render('login')
+        const {error} = req.query
+        res.render('login', {error})
     }
-
-    static register(req,res){
-        res.render('register')
-    }
-
-    static validateLogin(req,res){
-        const { email, password } = req.body
+    static postLogin(req,res){
+        const {email, password} = req.body
         User.findOne({
             where:{
                 email
             }
         })
-        .then(data=>{
-            if(data === data.password){
-                if(data.role === 'Admin'){
-                    res.redirect('homeAdmin')
+        .then(user=>{
+            if(user){
+                const isValidPassword = bcrypt.compareSync(password, user.password)
+                if(isValidPassword){
+                    req.session.userId = user.id
+                    return res.redirect('/homepage')
                 }else{
-                    res.redirect('homeUser')
+                    const error = "Invalid Email or Password"
+                    return res.redirect(`/login?error=${error}`)
                 }
             }else{
-                console.log('password salah')
+                const error = "Invalid Email or Password"
+                return res.redirect(`/login?error=${error}`)
             }
+        })
+        .catch(err=>{
+            console.log(err)
+            res.send(err)
+        })
+    }
+
+    static register(req,res){
+        res.render('register')
+    }
+    static postRegister(req,res){
+        const {email, password} = req.body
+        User.create({email, password})
+        .then(()=>{
+            res.redirect('/login')
         })
         .catch(err=>{
             console.log(err)

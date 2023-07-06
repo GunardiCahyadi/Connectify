@@ -1,4 +1,6 @@
-'use strict';
+ 'use strict';
+const encrypt = require('../helpers/encrypt')
+
 const {
   Model
 } = require('sequelize');
@@ -20,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     role: DataTypes.STRING
   }, {
+    hooks:{
+      beforeCreate(value, option){
+        value.password = encrypt(value.password);
+        value.role = "user" 
+      }
+    },
     sequelize,
     modelName: 'User',
   });
