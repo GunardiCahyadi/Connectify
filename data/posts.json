@@ -1,0 +1,26 @@
+[
+    {
+        "content": "Gak bisa santai bos",
+        "imageURL":"https://cdnimage2.caping.co.id/news/20230307/4a/0557172350A600A853.jpg_480A0A1A80.webp",
+        "ProfileId": 1,
+        "likes": 2
+    },
+    {
+        "content": "Beluga :)",
+        "imageURL":"https://i1.sndcdn.com/avatars-001040350189-hn54or-t500x500.jpg",
+        "ProfileId": 2,
+        "likes":1
+    },
+    {
+        "content": "Aku meragukan hidupku",
+        "imageURL":"https://global.discourse-cdn.com/codecademy/original/5X/3/c/8/5/3c85feecb4eb52a4d69ef0891cfbc495a1da7174.png",
+        "ProfileId": 3,
+        "likes":10
+    },
+    {
+        "content": "Capek Bang",
+        "imageURL":"https://www.thecoderpedia.com/wp-content/uploads/2020/06/Programming-Memes.jpg",
+        "ProfileId": 1,
+        "likes":5
+    }
+]

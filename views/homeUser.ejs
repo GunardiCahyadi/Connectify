@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Profile</title>
+  <style>
+    .card {
+      background-color: #f8f8ff;
+      border-color: #e6e6fa;
+    }
+    .card-title {
+      color: #9370db;
+    }
+    .card-text {
+      color: #808080;
+    }
+  </style>
+</head>
+<body>
+  <%- include('navbar') %>
+  <div class="container mt-5">
+    <h1>HOMEPAGE</h1>
+    <% posts.forEach(el => { %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= el.content %></h5>
+          <img src="<%= el.imageURL %>" width="100px" class="img-fluid" alt="Profile Photo">
+          <h5>posted by : <%= el.Profile.name %></h5>
+          <h5>❤️ <%= el.likes %></h5>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[
+    {
+        "email": "gunardicahyadi@gmail.com",
+        "password": "Gun123",
+        "role": "admin"
+    },
+    {
+        "email": "alferincandra@gmail.com",
+        "password": "Alferin123",
+        "role":"user"
+    },
+    {
+        "email": "joniprasanto@gmail.com",
+        "password": "Joni123",
+        "role":"user"
+    }
+]

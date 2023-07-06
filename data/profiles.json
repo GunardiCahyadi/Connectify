@@ -1,0 +1,23 @@
+[
+    {
+        "name": "gunardi",
+        "bio": "laper ges",
+        "dateOfBirth": "2001-01-01",
+        "UserId": 1,
+        "photoURL":"https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGhvdG8lMjBwcm9maWxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=900&q=60"
+    },
+    {
+        "name": "alferin",
+        "bio": "ngantuk ges",
+        "dateOfBirth":"2001-01-02",
+        "UserId":2,
+        "photoURL":"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG8lMjBwcm9maWxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=900&q=60"
+    },
+    {
+        "name": "joni",
+        "bio": "push rank ges",
+        "dateOfBirth":"2001-01-03",
+        "UserId":3,
+        "photoURL":"https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHBob3RvJTIwcHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60"
+    }
+]

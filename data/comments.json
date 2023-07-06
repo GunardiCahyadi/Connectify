@@ -1,0 +1,17 @@
+[
+    {
+        "comment": "gunardi",
+        "PostId": "1",
+        "ProfileId": "1"
+    },
+    {
+        "comment": "alferin",
+        "PostId": "2",
+        "ProfileId":"2"
+    },
+    {
+        "comment": "joni",
+        "PostId": "3",
+        "ProfileId":"3"
+    }
+]
