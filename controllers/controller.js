@@ -11,6 +11,30 @@ class Controller{
         res.render('register')
     }
 
+    static validateLogin(req,res){
+        const { email, password } = req.body
+        User.findOne({
+            where:{
+                email
+            }
+        })
+        .then(data=>{
+            if(data === data.password){
+                if(data.role === 'Admin'){
+                    res.redirect('homeAdmin')
+                }else{
+                    res.redirect('homeUser')
+                }
+            }else{
+                console.log('password salah')
+            }
+        })
+        .catch(err=>{
+            console.log(err)
+            res.send(err)
+        })
+    }
+
     static homeUser(req,res){
         Post.findAll({
             include:Profile
