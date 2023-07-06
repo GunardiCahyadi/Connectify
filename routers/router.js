@@ -7,6 +7,9 @@ const router = express.Router()
 router.get('/login',Controller.login)
 router.post('/login',Controller.postLogin)//tambahan joni
 
+router.get('/register',Controller.register)
+router.post('/register', Controller. postRegister) 
+
 router.use(function(req, res, next){ 
     if(!req.session.userId){
         const error = "Please login into your account"
@@ -16,8 +19,7 @@ router.use(function(req, res, next){
     }
 })
 
-router.get('/register',Controller.register)
-router.post('/register', Controller. postRegister) //tambahan joni
+router.get('/logout',Controller.logOut)
 router.get('/homepage',Controller.homeUser)
 router.get('/post/add', Controller.postAddForm)
 router.post('/post/add',Controller.addPost)

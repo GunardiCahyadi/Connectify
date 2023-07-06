@@ -20,14 +20,6 @@
                 <label for="imageUrl">ImageUrl:</label>
                 <input type="text" class="form-control" id="imageUrl" name="imageURL">
             </div>
-            <div class="form-group">
-                <label for="profile">Profile:</label>
-                <select class="form-control" id="profile" name="ProfileId">
-                    <% profiles.forEach((el => { %>
-                        <option value="<%= el.id %>"><%= el.name %></option>
-                    <% })) %>
-                </select>
-            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

@@ -34,6 +34,11 @@
   <!-- Navbar -->
   <%-include('navbar') %>
   <!-- Content -->
+  <form class="form-inline" style="width: 100%; display: flex; gap: 50px; padding: 0 50px;" action="/homepage" method="get">
+    <input class="form-control mr-sm-2" style="display: flex; flex: 2;" type="search" placeholder="Search by name" aria-label="Search" width="100%" name="name">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+
   <div class="container">
     <h1 class="text-center mb-5">HOMEPAGE</h1>
     <div class="row">
@@ -41,8 +46,8 @@
         <div class="col-md-6">
           <div class="card mb-4">
             <div class="card-body">
-              <h5 class="card-title"><%= el.content %></h5>
               <img src="<%= el.imageURL %>" class="img-fluid mb-3" alt="Profile Photo">
+              <h5 class="card-title"><%= el.content %></h5>
               <h6 class="mb-2">Posted by: <%= el.Profile.name %></h6>
               <p class="mb-0"><span class="heart-icon">❤️</span> <%= el.likes %> likes</p>
             </div>

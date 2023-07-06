@@ -14,8 +14,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: { 
-    secure: false,
-    sameSite:true 
+    secure: false
   }
 }))
 app.use(router)

@@ -65,8 +65,8 @@
                 <% profile.Posts.forEach(el => { %>
                     <div class="card mb-3">
                         <div class="card-body">
+                            <img src="<%= el.imageURL %> " width="400px" class="img-fluid mb-2" alt="Profile Photo">
                             <h5 class="card-title"><%= el.content %></h5>
-                            <img src="<%= el.imageURL %>" class="img-fluid mb-2" alt="Profile Photo">
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="/posts/<%= el.id %>/likes"><span class="heart-icon">❤️</span> <%= el.likes %> likes</a>
                                 <button class="btn btn-danger btn-sm"><a href="/posts/<%= el.id %>/delete" class="text-white">Delete</a></button>

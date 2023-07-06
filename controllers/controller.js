@@ -40,10 +40,14 @@ class Controller{
         res.render('register')
     }
     static postRegister(req,res){
-        const {email, password} = req.body
-        User.create({email, password})
-        .then(()=>{
-            res.redirect('/login')
+        const {email, password,name,dateOfBirth} = req.body
+        User.create({email,password,name,dateOfBirth})
+        .then((newUser)=>{
+            const UserId = newUser.id
+            return Profile.create({name,UserId,dateOfBirth})
+        })
+        .then(() => {
+            res.redirect('/login',)
         })
         .catch(err=>{
             console.log(err)
@@ -51,10 +55,29 @@ class Controller{
         })
     }
 
-    static homeUser(req,res){
-        Post.findAll({
-            include:Profile
+    static logOut(req,res){
+        req.session.destroy((err)=>{
+            if(err) console.log(err)
+            else{
+                res.redirect('/login')
+            }
         })
+    }
+
+    static homeUser(req,res){
+        const {name} = req.query
+        const obj = {include:{model: Profile}}
+        if(name){
+            obj.include.where = {
+                name: {
+                        [Op.iLike]: `%${name}%`
+                    }
+                }
+              
+        }
+
+        
+        Post.findAll(obj)
         .then(posts => {
             res.render('homeUser', {posts})
         })
@@ -76,9 +99,9 @@ class Controller{
     }
 
     static addPost(req , res){
-        console.log(req.body, "=======");
-        const {content,imageURL,ProfileId} = req.body
-        Post.create({content,imageURL,ProfileId})
+        let id = req.session.userId
+        const {content,imageURL} = req.body
+        Post.create({content,imageURL,ProfileId:id})
         .then(() => {
             res.redirect('/profile')
         })
@@ -89,25 +112,26 @@ class Controller{
     }
 
     static profile(req,res){
-        let id = 1
+        let id = req.session.userId
         Profile.findOne({
             include: {
-                model:Post, 
-                order:[['createdAt','DESC']]},
-            where:id,
+                model:Post,
+                order:[['createdAt','DESC']],
+            },
+            where: {id}
         })
         .then(profile => {
+            console.log(profile);
             res.render('profile', {profile})
         })
         .catch(err => {
             console.log(err)
             res.send(err)
         })
-
     }
 
     static profileEditForm(req,res){
-        let id = 1
+        let id = req.session.userId
         Profile.findOne({
             where:id
         })
@@ -121,10 +145,13 @@ class Controller{
     }
 
     static profileEdit(req,res){
-        let id = 1
+        let id = req.session.userId
+        console.log(id);
         const {name,bio,dateOfBirth} = req.body
         Profile.update({name,bio,dateOfBirth},{
-            where: {id}
+            where: {
+                id
+            }
         })
         .then(() => {
             res.redirect('/profile')
